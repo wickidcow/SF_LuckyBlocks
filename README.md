@@ -1,10 +1,12 @@
 # LuckyBlocks (Slimefun Edition)
-LuckyBlocks (Slimefun Edition) is a [Slimefun4](https://github.com/TheBusyBiscuit/Slimefun4/) Addon.<br>
-You need to install Slimefun4 in order for this plugin to work.
+LuckyBlocks (Slimefun Edition) is a [Slimefun](https://github.com/Slimefun/Slimefun4) addon.<br>
+You need to install Slimefun in order for this plugin to work.
 
-LuckyBlocks is a Slimefun4 Addon that is heavily inspired by the famous LuckyBlocks mods that have been in everyone's mouth.
+LuckyBlocks is a Slimefun addon that is heavily inspired by the famous LuckyBlocks mods that have been in everyone's mouth.
 It adds 4 new blocks to Slimefun, the Lucky Block, the very lucky block, the very unlucky block and a Pandoras box.
 Upon breaking a lucky block some random event will occur, this can either be a good or a bad one.
+
+Current development target: Paper 1.21.11 and Slimefun RC-37.
 
 [Read more...](https://github.com/TheBusyBiscuit/Slimefun4/wiki/LuckyBlocks)
 

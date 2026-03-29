@@ -18,11 +18,11 @@ public final class LuckyBootsSurprise implements Surprise {
 
     public LuckyBootsSurprise() {
         boots = new CustomItemStack(Material.DIAMOND_BOOTS, "&e&lLucky Boots");
-        boots.addUnsafeEnchantment(Enchantment.PROTECTION_ENVIRONMENTAL, 10);
-        boots.addUnsafeEnchantment(Enchantment.PROTECTION_PROJECTILE, 10);
-        boots.addUnsafeEnchantment(Enchantment.PROTECTION_EXPLOSIONS, 5);
+        boots.addUnsafeEnchantment(Enchantment.PROTECTION, 10);
+        boots.addUnsafeEnchantment(Enchantment.PROJECTILE_PROTECTION, 10);
+        boots.addUnsafeEnchantment(Enchantment.BLAST_PROTECTION, 5);
         boots.addUnsafeEnchantment(Enchantment.THORNS, 10);
-        boots.addUnsafeEnchantment(Enchantment.DURABILITY, 10);
+        boots.addUnsafeEnchantment(Enchantment.UNBREAKING, 10);
     }
 
     @Override

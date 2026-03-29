@@ -24,7 +24,7 @@ public final class FlyingCreeperSurprise implements Surprise {
 		for (int i = 0; i < 4; i++) {
 			Bat bat = (Bat) l.getWorld().spawnEntity(l, EntityType.BAT);
 			bat.addPotionEffect(new PotionEffect(PotionEffectType.INVISIBILITY, 999999999, 255));
-			bat.getPassengers().add(l.getWorld().spawnEntity(l, EntityType.CREEPER));
+			bat.addPassenger(l.getWorld().spawnEntity(l, EntityType.CREEPER));
 		}
 	}
 
