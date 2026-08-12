@@ -1,6 +1,5 @@
-options:
-  # Legacy builds are delivered through this fork's GitHub Releases.
-  auto-update: false
+# LuckyBlocks Legacy configuration
+# Releases are delivered through this fork's GitHub Actions and Releases.
 
 chance: 2
 debug: false
