@@ -6,7 +6,7 @@
 
     <groupId>com.github.wickidcow</groupId>
     <artifactId>SF_LuckyBlocks_Legacy</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.1</version>
     <name>SF LuckyBlocks Legacy</name>
     <description>Lucky Blocks for Slimefun Legacy on Paper, Purpur and Folia 26.2+</description>
 
