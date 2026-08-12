@@ -9,6 +9,7 @@
   <img alt="Minecraft 26.2+" src="https://img.shields.io/badge/Minecraft-26.2%2B-brightgreen?style=for-the-badge">
   <img alt="Slimefun Legacy" src="https://img.shields.io/badge/Slimefun-Legacy-6bd425?style=for-the-badge">
   <img alt="Java 25 build" src="https://img.shields.io/badge/Build-Java%2025-orange?style=for-the-badge">
+  <img alt="Build status" src="https://github.com/wickidcow/SF_LuckyBlocks/actions/workflows/maven.yml/badge.svg">
 </p>
 
 ---
