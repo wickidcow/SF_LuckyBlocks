@@ -6,6 +6,7 @@ folia-supported: true
 
 author: TheBusyBiscuit
 contributors:
+  - iiLuckyDev
   - wickidcow
 website: https://github.com/wickidcow/SF_LuckyBlocks
 description: Lucky Blocks for Slimefun Legacy on modern Paper, Purpur and Folia servers.
