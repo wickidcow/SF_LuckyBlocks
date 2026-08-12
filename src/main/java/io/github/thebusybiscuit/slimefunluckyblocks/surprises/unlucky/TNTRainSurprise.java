@@ -11,29 +11,34 @@ import io.github.thebusybiscuit.slimefunluckyblocks.surprises.LuckLevel;
 import io.github.thebusybiscuit.slimefunluckyblocks.surprises.Surprise;
 
 public final class TNTRainSurprise implements Surprise {
-	
-	@Override
-	public String getName() {
-		return "TNT Rain";
-	}
 
-	@Override
-	public void activate(Random random, Player p, Location l) {
-		l.getWorld().spawnEntity(l.add(0, 2, 0), EntityType.TNT).setVelocity(new Vector(0, 0.5, 0.15));
-		l.getWorld().spawnEntity(l.add(0, 2, 0), EntityType.TNT).setVelocity(new Vector(0.15, 0.5, 0.15));
-		l.getWorld().spawnEntity(l.add(0, 2, 0), EntityType.TNT).setVelocity(new Vector(0.15, 0.5, 0));
+    private static final Vector[] VELOCITIES = {
+        new Vector(0, 0.5, 0.15),
+        new Vector(0.15, 0.5, 0.15),
+        new Vector(0.15, 0.5, 0),
+        new Vector(0, 0.5, -0.15),
+        new Vector(-0.15, 0.5, -0.15),
+        new Vector(-0.15, 0.5, 0),
+        new Vector(-0.15, 0.5, 0.15),
+        new Vector(0.15, 0.5, -0.15)
+    };
 
-		l.getWorld().spawnEntity(l.add(0, 2, 0), EntityType.TNT).setVelocity(new Vector(0, 0.5, -0.15));
-		l.getWorld().spawnEntity(l.add(0, 2, 0), EntityType.TNT).setVelocity(new Vector(-0.15, 0.5, -0.15));
-		l.getWorld().spawnEntity(l.add(0, 2, 0), EntityType.TNT).setVelocity(new Vector(-0.15, 0.5, 0));
+    @Override
+    public String getName() {
+        return "TNT Rain";
+    }
 
-		l.getWorld().spawnEntity(l.add(0, 2, 0), EntityType.TNT).setVelocity(new Vector(-0.15, 0.5, 0.15));
-		l.getWorld().spawnEntity(l.add(0, 2, 0), EntityType.TNT).setVelocity(new Vector(0.15, 0.5, -0.15));
-	}
+    @Override
+    public void activate(Random random, Player p, Location l) {
+        Location spawnOrigin = l.clone().add(0, 2, 0);
 
-	@Override
-	public LuckLevel getLuckLevel() {
-		return LuckLevel.UNLUCKY;
-	}
+        for (Vector velocity : VELOCITIES) {
+            l.getWorld().spawnEntity(spawnOrigin.clone(), EntityType.TNT).setVelocity(velocity.clone());
+        }
+    }
 
+    @Override
+    public LuckLevel getLuckLevel() {
+        return LuckLevel.UNLUCKY;
+    }
 }
