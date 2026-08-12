@@ -33,7 +33,6 @@ import io.github.thebusybiscuit.slimefun4.libraries.dough.config.Config;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.items.CustomItemStack;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.skins.PlayerHead;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.skins.PlayerSkin;
-import io.github.thebusybiscuit.slimefun4.libraries.dough.updater.GitHubBuildsUpdater;
 import io.github.thebusybiscuit.slimefun4.implementation.SlimefunItems;
 import io.github.thebusybiscuit.slimefunluckyblocks.surprises.CustomItemSurprise;
 import io.github.thebusybiscuit.slimefunluckyblocks.surprises.LuckLevel;
@@ -103,12 +102,8 @@ public class SlimefunLuckyBlocks extends JavaPlugin implements SlimefunAddon {
     public void onEnable() {
         cfg = new Config(this);
 
-        // Setting up bStats
+        // Preserve the original LuckyBlocks bStats identity.
         new Metrics(this, 4858);
-
-        if (cfg.getBoolean("options.auto-update") && getDescription().getVersion().startsWith("DEV - ")) {
-            new GitHubBuildsUpdater(this, getFile(), "TheBusyBiscuit/luckyblocks-sf/master").start();
-        }
 
         ItemGroup itemGroup = new ItemGroup(new NamespacedKey(this, "lucky_blocks"), new CustomItemStack(PlayerHead.getItemStack(PlayerSkin.fromHashCode(TEXTURE)), "&rLucky Blocks"));
 
@@ -231,7 +226,7 @@ public class SlimefunLuckyBlocks extends JavaPlugin implements SlimefunAddon {
                             SlimefunItem sfItem = SlimefunItem.getById(id);
 
                             if (sfItem != null) {
-                                item = sfItem.getItem();
+                                item = sfItem.getItem().clone();
 
                                 if (cfg.getInt(itemPath + ".amount") > 1) {
                                     item.setAmount(cfg.getInt(itemPath + ".amount"));
@@ -358,7 +353,6 @@ public class SlimefunLuckyBlocks extends JavaPlugin implements SlimefunAddon {
 
     @Override
     public String getBugTrackerURL() {
-        return "https://github.com/TheBusyBiscuit/luckyblocks-sf/issues";
+        return "https://github.com/wickidcow/SF_LuckyBlocks/issues";
     }
-
 }

@@ -1,5 +1,6 @@
 package io.github.thebusybiscuit.slimefunluckyblocks.surprises;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
@@ -7,6 +8,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.plugin.java.JavaPlugin;
 
 public class CustomItemSurprise implements Surprise {
 
@@ -30,23 +32,39 @@ public class CustomItemSurprise implements Surprise {
     @Override
     public void activate(Random random, Player p, Location l) {
         if (!items.isEmpty()) {
-            for (ItemStack i : items) {
-                l.getWorld().dropItemNaturally(l, i);
+            for (ItemStack item : items) {
+                l.getWorld().dropItemNaturally(l, item);
             }
         }
+
         if (!commands.isEmpty()) {
-            for (String cmd : commands) {
-                Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), applyPlaceholders(cmd, p, l));
+            // Resolve region-owned values before switching execution contexts.
+            List<String> commandLines = new ArrayList<>(commands.size());
+            for (String command : commands) {
+                commandLines.add(applyPlaceholders(command, p, l));
             }
+
+            // On Folia, console commands belong to the global region. Paper also
+            // exposes the same scheduler API, so this is safe for all 26.2 targets.
+            JavaPlugin plugin = JavaPlugin.getProvidingPlugin(CustomItemSurprise.class);
+            Bukkit.getGlobalRegionScheduler().execute(plugin, () -> {
+                for (String commandLine : commandLines) {
+                    Bukkit.dispatchCommand(Bukkit.getConsoleSender(), commandLine);
+                }
+            });
         }
     }
+
     @Override
     public LuckLevel getLuckLevel() {
         return luckLevel;
     }
 
     private String applyPlaceholders(String str, Player p, Location l) {
-        return str.replace("{player}", p.getName()).replace("{world}", l.getWorld().getName()).replace("{x}", l.getBlockX()+"").replace("{y}", l.getBlockY()+"").replace("{z}", l.getBlockZ()+"");
+        return str.replace("{player}", p.getName())
+                .replace("{world}", l.getWorld().getName())
+                .replace("{x}", Integer.toString(l.getBlockX()))
+                .replace("{y}", Integer.toString(l.getBlockY()))
+                .replace("{z}", Integer.toString(l.getBlockZ()));
     }
-
 }

@@ -40,6 +40,13 @@ public class LuckyBlock extends SlimefunItem {
                 Random random = ThreadLocalRandom.current();
                 List<Surprise> luckySurprises = surprises.stream().filter(predicate).collect(Collectors.toList());
 
+                // A server owner may intentionally disable every event in a luck
+                // category. Treat that as "no surprise" instead of throwing from
+                // Random#nextInt(0) and breaking the event pipeline.
+                if (luckySurprises.isEmpty()) {
+                    return;
+                }
+
                 Player p = e.getPlayer();
                 Location loc = e.getBlock().getLocation();
                 luckySurprises.get(random.nextInt(luckySurprises.size())).activate(random, p, loc);
@@ -58,5 +65,4 @@ public class LuckyBlock extends SlimefunItem {
         this.predicate = predicate;
         super.register(plugin);
     }
-
 }
