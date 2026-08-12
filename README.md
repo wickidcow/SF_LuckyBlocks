@@ -1,138 +1,86 @@
-# 🍀💥 SF LuckyBlocks Legacy 💥🍀
+<div align="center">
 
-<p align="center">
-  <strong>Break a block. Cross your fingers. Accept your fate.</strong><br>
-  Lucky Blocks brought forward for <strong>Slimefun Legacy</strong> and modern Minecraft servers.
-</p>
+# 🍀💥 LuckyBlocks — Slimefun Legacy
 
-<p align="center">
-  <img alt="Minecraft 26.2+" src="https://img.shields.io/badge/Minecraft-26.2%2B-brightgreen?style=for-the-badge">
-  <img alt="Slimefun Legacy" src="https://img.shields.io/badge/Slimefun-Legacy-6bd425?style=for-the-badge">
-  <img alt="Java 25 build" src="https://img.shields.io/badge/Build-Java%2025-orange?style=for-the-badge">
-  <img alt="Build status" src="https://github.com/wickidcow/SF_LuckyBlocks/actions/workflows/maven.yml/badge.svg">
-</p>
+**Break a block. Cross your fingers. Accept your fate.**
 
----
+![Slimefun Legacy](https://img.shields.io/badge/Slimefun-Legacy-6bd425?style=for-the-badge)
+![Paper 26.2+](https://img.shields.io/badge/Paper-26.2%2B-blue?style=for-the-badge)
+![License: GPL-3.0](https://img.shields.io/badge/License-GPL--3.0-blue?style=for-the-badge)
+![Maintained for AlbionMC.com](https://img.shields.io/badge/Maintained%20for-albionmc.com-7b68ee?style=for-the-badge)
 
-## 🎲 What does it do?
+</div>
 
-SF LuckyBlocks adds the classic Lucky Blocks experience directly into Slimefun.
+> [!IMPORTANT]
+> LuckyBlocks Legacy is an **unofficial community maintenance fork** for Slimefun Legacy, developed for use on **albionmc.com** while preserving the classic LuckyBlocks experience and project history.
 
-Break one and you might get treasure... or you might immediately regret every decision that led you there.
+## 🎲 What does LuckyBlocks do?
 
-### The blocks
+LuckyBlocks puts chaotic, randomized reward blocks directly into Slimefun. Break one and you might get treasure, mobs, gear, potions, explosions, traps, or something much stranger.
 
 | Block | Luck | What to expect |
 |---|---:|---|
 | 🍀 **Lucky Block** | 0 | Anything can happen. |
-| ✨ **Very Lucky Block** | +80 | Strongly favors the good stuff. |
+| ✨ **Very Lucky Block** | +80 | Strongly favors good outcomes. |
 | ☠️ **Very Unlucky Block** | -80 | You knew what you were doing. |
 | 📦 **Pandora's Box** | ??? | Chaos has entered the chat. |
 
-## 💎 Possible surprises
-
-LuckyBlocks includes dozens of random events, including:
-
-- 💰 diamonds, emeralds, iron and valuables
-- ⚔️ overpowered lucky weapons and armor
-- 🐕 tamed animals and friendly mobs
-- 🧪 lucky and unlucky potions
-- 🌈 strange sheep, villagers and other weird encounters
-- 💣 TNT rain, explosions and flying creepers
-- 🧟 hostile mobs, giant slimes and other bad decisions
-- 🕳️ traps, cobwebs, water and environmental chaos
-- 📦 special Pandora's Box events
-- 🛠️ configurable custom item and command surprises
+Possible surprises include valuables, lucky weapons/armor, tamed animals, potions, strange mobs, TNT, hostile encounters, environmental traps, Pandora events, and configurable custom item/command surprises.
 
 ```text
        🟨🟨🟨
-       🟨❔🟨    <- surely this one is safe
+       🟨❔🟨   <- surely this one is safe
        🟨🟨🟨
           |
           v
         💥☠️
 ```
 
-## 🧪 Compatibility
+## 🧪 Slimefun Legacy maintenance
 
-This fork is maintained for the Slimefun Legacy ecosystem.
+- **Minecraft / Paper:** modern 26.2+ line
+- **Purpur:** through Paper API compatibility
+- **Slimefun:** Slimefun Legacy
+- **Modern build environment:** Java 25
+- preserves the classic LuckyBlocks gameplay and identity;
+- keeps random events and configurable surprises usable on current server APIs;
+- produces directly usable JAR releases where the workflow supports direct artifacts.
 
-- ✅ **Minecraft / Paper 26.2+**
-- ✅ **Purpur 26.2+** through Paper API compatibility
-- ✅ **Folia 26.2+** with `folia-supported: true`
-- ✅ **Slimefun Legacy** (`Legacy-SNAPSHOT` API)
-- ✅ **Java 25 build environment**
-- ✅ Java 21-compatible addon bytecode
-
-> Folia servers must also use a Folia-compatible Slimefun Legacy build. LuckyBlocks itself does not use the old Bukkit scheduler.
-
-## 📥 Download
-
-Every successful build on the main branch publishes a **raw `.jar` file** to GitHub Releases.
-
-No `.jar.zip` extraction step is required.
-
-Expected filename:
-
-```text
-SF_LuckyBlocks_Legacy_v1.0.0.jar
-```
-
-Open the repository's **Releases** section and download the `.jar` asset directly into your server's `plugins` folder.
-
-## 🛠️ Building
-
-The project builds with Maven using Java 25 while targeting Java 21-compatible addon bytecode.
-
-```bash
-mvn -B -ntp clean package
-```
-
-The resulting plugin is written to:
-
-```text
-target/SF_LuckyBlocks_Legacy_v1.0.0.jar
-```
+Folia use requires the entire installed Slimefun/addon stack to be safe for Folia's scheduling model; a descriptor flag alone cannot guarantee every dependency is Folia-safe.
 
 ## ⚙️ Configuration
 
-Lucky Blocks can naturally appear during chunk population. The default configuration lets you control the spawn chance and blacklist worlds such as the Nether and End.
+Lucky Blocks can be configured for natural generation, world restrictions, and custom surprises using vanilla items, Slimefun items, enchantments, commands, and different luck levels.
 
-You can also define custom surprises with:
+## ❤️ Credits & project lineage
 
-- vanilla items
-- Slimefun items
-- enchantments
-- console commands
-- Lucky / Neutral / Unlucky / Pandora luck levels
+- **TheBusyBiscuit** — original creator of the classic **LuckyBlocks (Slimefun Edition)** work.
+- **Slimefun community contributors** — maintenance, fixes, APIs, and the addon ecosystem that kept the project alive.
+- **Historical LuckyBlocks community repositories and maintainers** — preservation and later compatibility work.
+- **wickidcow / Slimefun Legacy** — current compatibility and preservation maintenance for modern servers and albionmc.com.
 
-## 🧪 Server admins
+This fork exists because the original addon was worth preserving. It does not claim original authorship and should not be presented as an official upstream release.
 
-Recommended installation:
+## 📜 GNU General Public License v3.0
 
-1. Install a current **Slimefun Legacy** build.
-2. Run **Paper, Purpur or Folia 26.2+**.
-3. Drop `SF_LuckyBlocks_Legacy_v1.0.0.jar` into `plugins/`.
-4. Restart the server.
-5. Search **Lucky Blocks** in the Slimefun Guide.
-6. Craft one and make questionable choices. 🍀
+LuckyBlocks is distributed under the **GNU General Public License v3.0 (GPLv3)**. See `LICENSE` for the complete license text.
 
-## ❤️ Credits & legacy
+If you distribute LuckyBlocks or a modified GPL-covered version, comply with GPLv3, including preserving applicable notices, identifying modified versions, licensing covered modified source under GPLv3, and making the required Corresponding Source available when distributing object code.
 
-This project exists because of the original **LuckyBlocks (Slimefun Edition)** work by **TheBusyBiscuit** and the Slimefun community.
+The software is supplied **without warranty** as described by GPLv3.
 
-A special thank-you also goes to **[iiLuckyDev](https://github.com/iiLuckyDev)**. This fork was created from **[iiLuckyDev/luckyblocks](https://github.com/iiLuckyDev/luckyblocks)**, whose 1.21.11 modernization brought the classic addon forward with updated Paper, enchantment, potion-effect, and entity APIs and provided the strongest modern foundation for this Slimefun Legacy continuation.
+## ⚖️ Independence & trademark notice
 
-SF LuckyBlocks Legacy builds on both of those efforts: preserving the original gameplay and identity while continuing the compatibility work for **Paper, Purpur and Folia 26.2+** with **Slimefun Legacy**.
+**NOT AN OFFICIAL MINECRAFT PRODUCT. NOT APPROVED BY OR ASSOCIATED WITH MOJANG OR MICROSOFT.**
 
-Modern Slimefun Legacy maintenance: **wickidcow**.
+LuckyBlocks, Slimefun Legacy, and this maintenance fork are independent community projects. They are not sponsored, endorsed, approved, or operated by Mojang Studios or Microsoft. Minecraft-related names, brands, and assets remain the property of their respective rights holders.
 
-## 📜 License
-
-SF LuckyBlocks Legacy remains open source under the **GNU General Public License v3.0**, matching the original project.
+This fork is also not represented as an official release of TheBusyBiscuit, the original Slimefun team, or any other upstream contributor unless explicitly stated by those parties.
 
 ---
 
-<p align="center">
-  🍀 <strong>Sometimes diamonds. Sometimes TNT. Always LuckyBlocks.</strong> 💥
-</p>
+<div align="center">
+
+**🍀 Sometimes diamonds. Sometimes TNT. Always LuckyBlocks. 💥**
+
+</div>
