@@ -1,13 +1,17 @@
-options:
-  auto-update: true
-  
+# LuckyBlocks Legacy configuration
+#
+# Natural generation chance is evaluated when a chunk is populated.
+# Set chance to 0 to disable natural Lucky Block generation.
+
 chance: 2
 debug: false
 
 world-blacklist:
-- world_nether
-- world_the_end
+  - world_nether
+  - world_the_end
 
+# Add your own surprises here.
+# A surprise may contain normal Minecraft items, Slimefun items and/or commands.
 custom:
   ExampleSurprise1:
     enabled: false
@@ -20,7 +24,8 @@ custom:
         lore:
           - '&7This is the lore.'
         enchants:
-          - DAMAGE_ALL:5
+          - SHARPNESS:5
+
   ExampleSurprise2:
     enabled: false
     lucklevel: LUCKY
@@ -28,6 +33,7 @@ custom:
       '1':
         slimefun_item: 'BIRTHDAY_CAKE'
         amount: 1
+
   ExampleSurprise3:
     enabled: false
     lucklevel: UNLUCKY
