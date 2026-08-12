@@ -6,6 +6,9 @@
 
 ![Slimefun Legacy](https://img.shields.io/badge/Slimefun-Legacy-6bd425?style=for-the-badge)
 ![Paper 26.2+](https://img.shields.io/badge/Paper-26.2%2B-blue?style=for-the-badge)
+![Purpur 26.2+](https://img.shields.io/badge/Purpur-26.2%2B-bb66ff?style=for-the-badge)
+![Folia 26.2+](https://img.shields.io/badge/Folia-26.2%2B-6e45e2?style=for-the-badge)
+![Java 25](https://img.shields.io/badge/Build-Java%2025-orange?style=for-the-badge)
 ![License: GPL-3.0](https://img.shields.io/badge/License-GPL--3.0-blue?style=for-the-badge)
 ![Maintained for AlbionMC.com](https://img.shields.io/badge/Maintained%20for-albionmc.com-7b68ee?style=for-the-badge)
 
@@ -38,15 +41,38 @@ Possible surprises include valuables, lucky weapons/armor, tamed animals, potion
 
 ## 🧪 Slimefun Legacy maintenance
 
-- **Minecraft / Paper:** modern 26.2+ line
-- **Purpur:** through Paper API compatibility
-- **Slimefun:** Slimefun Legacy
-- **Modern build environment:** Java 25
-- preserves the classic LuckyBlocks gameplay and identity;
-- keeps random events and configurable surprises usable on current server APIs;
-- produces directly usable JAR releases where the workflow supports direct artifacts.
+- ✅ **Minecraft / Paper 26.2+**
+- ✅ **Purpur 26.2+** through Paper API compatibility
+- ✅ **Folia 26.2+** with dedicated Folia API compilation and region-aware runtime fixes
+- ✅ **Slimefun Legacy** as the primary Slimefun target
+- ✅ **Java 25** build environment with Java 21-compatible addon bytecode
+- ✅ classic LuckyBlocks item IDs, luck categories and gameplay preserved
+- ✅ raw, directly usable `.jar` output from GitHub Actions and GitHub Releases
 
-Folia use requires the entire installed Slimefun/addon stack to be safe for Folia's scheduling model; a descriptor flag alone cannot guarantee every dependency is Folia-safe.
+Folia use still requires the rest of the installed Slimefun/addon stack to be Folia-safe too; one addon cannot make an incompatible dependency region-thread safe by itself.
+
+## 🔧 v1.0.1 runtime hardening
+
+- fixes natural Lucky Block placement so it spawns **above** the highest solid surface instead of testing the surface block as though it were air;
+- moves natural-generation world access onto the region that owns the generated chunk;
+- makes the Void Hole dig to the world's real minimum height instead of stopping at legacy Y=0;
+- groups multi-block trap writes by owning chunk/region for Folia safety;
+- fixes the fake-diamond event so one of the **two visible diamond blocks** is always the disguised unlucky block;
+- restores the Cobweb and Giant Slime source classes to match their actual behavior;
+- clamps invalid natural-generation chance values to the safe `0-100` range;
+- credits **iiLuckyDev** in both the README lineage and plugin contributor metadata.
+
+## 📥 Download
+
+Successful `master` builds publish the server-ready JAR directly. No `.jar.zip` extraction step is required.
+
+Current naming format:
+
+```text
+SF_LuckyBlocks_Legacy_v1.0.1.jar
+```
+
+Download the `.jar` from the repository's **Releases** page and place it directly into the server's `plugins/` folder.
 
 ## ⚙️ Configuration
 
@@ -56,7 +82,7 @@ Lucky Blocks can be configured for natural generation, world restrictions, and c
 
 - **TheBusyBiscuit** — original creator credited by the classic LuckyBlocks Slimefun project history.
 - **Slimefun-Addon-Community/luckyblocks** — original community source repository in this fork chain.
-- **iiLuckyDev/luckyblocks** — the **immediate upstream fork** from which `wickidcow/SF_LuckyBlocks` was created.
+- **iiLuckyDev/luckyblocks** — the **immediate upstream fork** from which `wickidcow/SF_LuckyBlocks` was created; its 1.21.11 modernization provided the modern base for this Legacy continuation.
 - **LuckyBlocks and Slimefun community contributors** — maintenance, fixes, APIs, testing, and preservation across the project's lifetime.
 - **wickidcow / Slimefun Legacy** — current compatibility and preservation maintenance for modern servers and albionmc.com.
 
