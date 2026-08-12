@@ -1,32 +1,111 @@
-# LuckyBlocks (Slimefun Edition)
-LuckyBlocks (Slimefun Edition) is a [Slimefun](https://github.com/Slimefun/Slimefun4) addon.<br>
-You need to install Slimefun in order for this plugin to work.
-
-LuckyBlocks is a Slimefun addon that is heavily inspired by the famous LuckyBlocks mods that have been in everyone's mouth.
-It adds 4 new blocks to Slimefun, the Lucky Block, the very lucky block, the very unlucky block and a Pandoras box.
-Upon breaking a lucky block some random event will occur, this can either be a good or a bad one.
-
-Current development target: Paper 1.21.11 and Slimefun RC-37.
-
-[Read more...](https://github.com/TheBusyBiscuit/Slimefun4/wiki/LuckyBlocks)
-
-## Download LuckyBlocks (Slimefun Edition)
-You can download LuckyBlocks (Slimefun Edition) right here: [Development Builds](https://thebusybiscuit.github.io/builds/TheBusyBiscuit/luckyblocks-sf/master/)
+# 🍀 LuckyBlocks — Slimefun Legacy
 
 <p align="center">
-  <a href="https://thebusybiscuit.github.io/builds/TheBusyBiscuit/luckyblocks-sf/master/">
-    <img src="https://thebusybiscuit.github.io/builds/TheBusyBiscuit/luckyblocks-sf/master/badge.svg" alt="Build Server"/>
-  </a>
+  <b>Break a block. Roll the dice. Hope the server gods are feeling generous.</b><br>
+  🟨 ➜ ❓ ➜ 💎 / 🐔 / 💥 / ☠️
 </p>
 
-## Discord
-You can find Slimefun's community on Discord!
-Click the badge down below to join the server for suggestions/questions or other discussions about this plugin.
+LuckyBlocks adds random-event blocks to **Slimefun Legacy**. Crack one open and you might get treasure, enchanted gear, mobs, potions, explosions, falling anvils, chaos... or something much worse.
+
+This repository is an **unofficial preservation and compatibility fork** of the original LuckyBlocks (Slimefun Edition), maintained for modern Minecraft servers while keeping the classic addon feel and original Slimefun item IDs.
+
+## 🎲 The blocks
+
+| Block | Luck | What could possibly happen? |
+| --- | ---: | --- |
+| 🟨 **Lucky Block** | `0` | The full good/neutral/bad surprise pool. Pure gambling with blocks. |
+| ✨ **Very Lucky Block** | `+80` | Tilts the odds toward shiny things and happy accidents. |
+| ☠️ **Very Unlucky Block** | `-80` | You knew what you were doing when you crafted this. |
+| 📦 **Pandora's Box** | `ERROR` | Special Pandora surprises. Open responsibly. Or don't. |
+
+## 💥 What does it do?
+
+LuckyBlocks keeps the original addon gameplay, including dozens of random surprises such as:
+
+- 💎 diamonds, emeralds, valuables and resource drops
+- ⚔️ wildly enchanted lucky weapons, tools and armor
+- 🧪 lucky and unlucky potion showers
+- 🐺 tamed animals and strange mob encounters
+- 🐔 chicken rain, rainbow sheep and other nonsense
+- 🧟 zombies, witches, creepers and giant slimes
+- 🧨 TNT, explosions and airborne hazards
+- ⚒️ falling anvils and environmental traps
+- 🕳️ holes, cobwebs, water traps and other unpleasant surprises
+- 📦 unique **Pandora's Box** outcomes
+- 🛠️ configurable custom surprises, items and commands
+- 🌍 optional naturally generated Lucky Blocks in newly populated chunks
+
+No guarantee is made regarding the continued existence of your roof after opening Pandora's Box.
+
+## 🧪 Compatibility
+
+This Legacy fork is maintained for the modern Albion-style Slimefun stack:
+
+- **Minecraft:** 1.21.11+
+- **Paper:** 26.2+
+- **Purpur:** 26.2+ / Paper-compatible builds
+- **Folia:** 26.2+ with explicit `folia-supported: true`
+- **Build JDK:** Java 25
+- **Plugin bytecode:** Java 21
+- **Slimefun:** **Slimefun Legacy** primary target
+
+The GitHub workflow performs a dedicated **Folia API compile check** and then builds the release JAR against **Paper 26.2**. Purpur support follows its Paper API compatibility.
+
+## 📦 Downloads
+
+Every successful `master` build produces a directly usable server JAR:
+
+```text
+SF_LuckyBlocks_Legacy_v1.0.0.jar
+```
+
+The Actions artifact is uploaded as the **raw `.jar` file**, not a `.jar.zip`, and the same JAR is attached directly to the GitHub release.
+
+Drop it straight into:
+
+```text
+/plugins/
+```
+
+No extracting. No hunting through archives. Just Lucky Blocks. 🍀
+
+## ⚙️ Configuration
+
+You can control natural Lucky Block generation and create your own custom surprises in `config.yml`.
+
+```yaml
+chance: 2
+
+world-blacklist:
+  - world_nether
+  - world_the_end
+```
+
+Custom surprises can contain normal Minecraft items, Slimefun items, enchantments and commands.
+
+## 🏛️ Preservation & credits
+
+**LuckyBlocks (Slimefun Edition) was originally created by TheBusyBiscuit and the Slimefun community.** The concepts, original gameplay, item IDs and project history belong to that work.
+
+This fork exists to keep the addon alive on current Minecraft versions and integrate it cleanly with **Slimefun Legacy**, not to erase or replace the original authorship.
+
+Original community project:
+
+- `Slimefun-Addon-Community/luckyblocks`
+
+Modern 1.21.11 work used as the starting point:
+
+- `iiLuckyDev/luckyblocks`
+
+Additional modern API/Folia fixes from other community forks may be incorporated where they preserve the original English addon behavior.
+
+## 📜 License
+
+LuckyBlocks remains open source under the **GNU General Public License v3.0**, matching the `LICENSE` included in this repository.
+
+---
+
 <p align="center">
-  <a href="https://discord.gg/fsD4Bkh">
-    <img src="https://img.shields.io/discord/565557184348422174?color=7289DA&label=Discord&style=for-the-badge" alt="Discord Invite"/>
-  </a>
+  🍀 <b>Good luck.</b> 🍀<br>
+  <sub>You're probably going to need it.</sub>
 </p>
-
-## Open Source
-This Project is open-source and licensed under [GNU GPLv3](https://github.com/TheBusyBiscuit/luckyblocks-sf/blob/master/LICENSE)
