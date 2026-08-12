@@ -1,12 +1,13 @@
 options:
-  auto-update: true
-  
+  # Legacy builds are delivered through this fork's GitHub Releases.
+  auto-update: false
+
 chance: 2
 debug: false
 
 world-blacklist:
-- world_nether
-- world_the_end
+  - world_nether
+  - world_the_end
 
 custom:
   ExampleSurprise1:
@@ -20,7 +21,7 @@ custom:
         lore:
           - '&7This is the lore.'
         enchants:
-          - DAMAGE_ALL:5
+          - SHARPNESS:5
   ExampleSurprise2:
     enabled: false
     lucklevel: LUCKY
