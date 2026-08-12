@@ -54,9 +54,10 @@ Lucky Blocks can be configured for natural generation, world restrictions, and c
 
 ## ❤️ Credits & project lineage
 
-- **TheBusyBiscuit** — original creator of the classic **LuckyBlocks (Slimefun Edition)** work.
-- **Slimefun community contributors** — maintenance, fixes, APIs, and the addon ecosystem that kept the project alive.
-- **Historical LuckyBlocks community repositories and maintainers** — preservation and later compatibility work.
+- **TheBusyBiscuit** — original creator credited by the classic LuckyBlocks Slimefun project history.
+- **Slimefun-Addon-Community/luckyblocks** — original community source repository in this fork chain.
+- **iiLuckyDev/luckyblocks** — the **immediate upstream fork** from which `wickidcow/SF_LuckyBlocks` was created.
+- **LuckyBlocks and Slimefun community contributors** — maintenance, fixes, APIs, testing, and preservation across the project's lifetime.
 - **wickidcow / Slimefun Legacy** — current compatibility and preservation maintenance for modern servers and albionmc.com.
 
 This fork exists because the original addon was worth preserving. It does not claim original authorship and should not be presented as an official upstream release.
@@ -75,7 +76,7 @@ The software is supplied **without warranty** as described by GPLv3.
 
 LuckyBlocks, Slimefun Legacy, and this maintenance fork are independent community projects. They are not sponsored, endorsed, approved, or operated by Mojang Studios or Microsoft. Minecraft-related names, brands, and assets remain the property of their respective rights holders.
 
-This fork is also not represented as an official release of TheBusyBiscuit, the original Slimefun team, or any other upstream contributor unless explicitly stated by those parties.
+This fork is also not represented as an official release of TheBusyBiscuit, Slimefun-Addon-Community, iiLuckyDev, the original Slimefun team, or any other upstream contributor unless explicitly stated by those parties.
 
 ---
 
