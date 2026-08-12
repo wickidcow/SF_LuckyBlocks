@@ -121,9 +121,11 @@ Recommended installation:
 
 This project exists because of the original **LuckyBlocks (Slimefun Edition)** work by **TheBusyBiscuit** and the Slimefun community.
 
-This fork keeps that original gameplay and identity alive while updating it for modern servers and **Slimefun Legacy**.
+A special thank-you also goes to **[iiLuckyDev](https://github.com/iiLuckyDev)**. This fork was created from **[iiLuckyDev/luckyblocks](https://github.com/iiLuckyDev/luckyblocks)**, whose 1.21.11 modernization brought the classic addon forward with updated Paper, enchantment, potion-effect, and entity APIs and provided the strongest modern foundation for this Slimefun Legacy continuation.
 
-Modern compatibility maintenance: **wickidcow / Slimefun Legacy**.
+SF LuckyBlocks Legacy builds on both of those efforts: preserving the original gameplay and identity while continuing the compatibility work for **Paper, Purpur and Folia 26.2+** with **Slimefun Legacy**.
+
+Modern Slimefun Legacy maintenance: **wickidcow**.
 
 ## 📜 License
 
