@@ -3,10 +3,10 @@ name: Build LuckyBlocks Legacy
 on:
   workflow_dispatch:
   push:
-    branches: [master]
+    branches: ['**']
     tags: ['v*']
   pull_request:
-    branches: [master]
+    branches: ['**']
 
 permissions:
   contents: write
@@ -65,6 +65,12 @@ jobs:
           sha256sum "dist/${JAR}"
           echo "version=${VERSION}" >> "$GITHUB_OUTPUT"
           echo "jar=${JAR}" >> "$GITHUB_OUTPUT"
+      - name: Upload raw JAR artifact
+        uses: actions/upload-artifact@v7
+        with:
+          path: luckyblocks/dist/${{ steps.artifact.outputs.jar }}
+          archive: false
+          if-no-files-found: error
       - name: Publish raw JAR release asset
         if: github.event_name == 'push' || github.event_name == 'workflow_dispatch'
         working-directory: luckyblocks
