@@ -65,12 +65,6 @@ jobs:
           sha256sum "dist/${JAR}"
           echo "version=${VERSION}" >> "$GITHUB_OUTPUT"
           echo "jar=${JAR}" >> "$GITHUB_OUTPUT"
-      - name: Upload CI artifact
-        uses: actions/upload-artifact@v7
-        with:
-          name: SF_LuckyBlocks${{ steps.artifact.outputs.version }}
-          path: luckyblocks/dist/${{ steps.artifact.outputs.jar }}
-          if-no-files-found: error
       - name: Publish raw JAR release asset
         if: github.event_name == 'push' || github.event_name == 'workflow_dispatch'
         working-directory: luckyblocks
