@@ -58,7 +58,7 @@
             <properties>
                 <server.api.groupId>dev.folia</server.api.groupId>
                 <server.api.artifactId>folia-api</server.api.artifactId>
-                <server.api.version>26.2.build.+</server.api.version>
+                <server.api.version>[26.2.build,)</server.api.version>
             </properties>
         </profile>
     </profiles>
