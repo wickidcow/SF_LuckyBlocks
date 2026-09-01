@@ -58,7 +58,7 @@ jobs:
         run: mvn -B -ntp clean package
       - name: Verify Paper/Purpur 26.2 compilation
         working-directory: luckyblocks
-        run: mvn -B -ntp clean package -Dserver.api.version=26.2.build.+
+        run: mvn -B -ntp clean package '-Dserver.api.version=[26.2.build,)'
       - name: Verify Folia 26.2 compilation
         working-directory: luckyblocks
         run: mvn -B -ntp -Pfolia clean package
