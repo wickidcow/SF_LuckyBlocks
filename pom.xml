@@ -1,128 +1,55 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.github.wickidcow</groupId>
     <artifactId>SF_LuckyBlocks_Legacy</artifactId>
-    <version>1.0.1</version>
+    <version>1.0.2</version>
     <name>SF LuckyBlocks Legacy</name>
-    <description>Lucky Blocks for Slimefun Legacy on Paper, Purpur and Folia 26.2+</description>
+    <description>Lucky Blocks for Slimefun Legacy on Minecraft 1.21.11 through 26.2 Paper/Purpur and Folia 26.2.</description>
 
     <properties>
         <maven.compiler.release>21</maven.compiler.release>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <server.api.groupId>io.papermc.paper</server.api.groupId>
         <server.api.artifactId>paper-api</server.api.artifactId>
-        <server.api.version>[26.2.build,)</server.api.version>
+        <server.api.version>1.21.11-R0.1-SNAPSHOT</server.api.version>
         <slimefun.legacy.version>Legacy-SNAPSHOT</slimefun.legacy.version>
         <bstats.version>3.2.1</bstats.version>
     </properties>
 
     <repositories>
-        <repository>
-            <id>papermc</id>
-            <url>https://repo.papermc.io/repository/maven-public/</url>
-        </repository>
-        <repository>
-            <id>slimefun-legacy-snapshots</id>
-            <url>https://maven.norain.city/snapshots</url>
-        </repository>
+        <repository><id>papermc</id><url>https://repo.papermc.io/repository/maven-public/</url></repository>
+        <repository><id>slimefun-legacy-snapshots</id><url>https://maven.norain.city/snapshots</url></repository>
     </repositories>
 
     <build>
         <finalName>SF_LuckyBlocks_Legacy_v${project.version}</finalName>
         <defaultGoal>clean package</defaultGoal>
-
         <resources>
-            <resource>
-                <directory>src/main/resources</directory>
-                <filtering>true</filtering>
-            </resource>
-            <resource>
-                <directory>${basedir}</directory>
-                <filtering>false</filtering>
-                <includes>
-                    <include>LICENSE</include>
-                </includes>
-                <targetPath>META-INF</targetPath>
-            </resource>
+            <resource><directory>src/main/resources</directory><filtering>true</filtering></resource>
+            <resource><directory>${basedir}</directory><filtering>false</filtering><includes><include>LICENSE</include></includes><targetPath>META-INF</targetPath></resource>
         </resources>
-
         <plugins>
+            <plugin><groupId>org.apache.maven.plugins</groupId><artifactId>maven-compiler-plugin</artifactId><version>3.14.1</version><configuration><release>${maven.compiler.release}</release></configuration></plugin>
             <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.14.1</version>
-                <configuration>
-                    <release>${maven.compiler.release}</release>
-                </configuration>
-            </plugin>
-
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-shade-plugin</artifactId>
-                <version>3.6.2</version>
-                <executions>
-                    <execution>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>shade</goal>
-                        </goals>
-                        <configuration>
-                            <createDependencyReducedPom>false</createDependencyReducedPom>
-                            <minimizeJar>false</minimizeJar>
-                            <artifactSet>
-                                <includes>
-                                    <include>org.bstats:bstats-bukkit</include>
-                                    <include>org.bstats:bstats-base</include>
-                                </includes>
-                            </artifactSet>
-                            <relocations>
-                                <relocation>
-                                    <pattern>org.bstats</pattern>
-                                    <shadedPattern>io.github.thebusybiscuit.slimefunluckyblocks.bstats</shadedPattern>
-                                </relocation>
-                            </relocations>
-                            <filters>
-                                <filter>
-                                    <artifact>*:*</artifact>
-                                    <excludes>
-                                        <exclude>META-INF/*.SF</exclude>
-                                        <exclude>META-INF/*.DSA</exclude>
-                                        <exclude>META-INF/*.RSA</exclude>
-                                    </excludes>
-                                </filter>
-                            </filters>
-                        </configuration>
-                    </execution>
-                </executions>
+                <groupId>org.apache.maven.plugins</groupId><artifactId>maven-shade-plugin</artifactId><version>3.6.2</version>
+                <executions><execution><phase>package</phase><goals><goal>shade</goal></goals><configuration>
+                    <createDependencyReducedPom>false</createDependencyReducedPom><minimizeJar>false</minimizeJar>
+                    <artifactSet><includes><include>org.bstats:bstats-bukkit</include><include>org.bstats:bstats-base</include></includes></artifactSet>
+                    <relocations><relocation><pattern>org.bstats</pattern><shadedPattern>io.github.thebusybiscuit.slimefunluckyblocks.bstats</shadedPattern></relocation></relocations>
+                    <filters><filter><artifact>*:*</artifact><excludes><exclude>META-INF/*.SF</exclude><exclude>META-INF/*.DSA</exclude><exclude>META-INF/*.RSA</exclude></excludes></filter></filters>
+                </configuration></execution></executions>
             </plugin>
         </plugins>
     </build>
 
     <dependencies>
-        <dependency>
-            <groupId>${server.api.groupId}</groupId>
-            <artifactId>${server.api.artifactId}</artifactId>
-            <version>${server.api.version}</version>
-            <scope>provided</scope>
-        </dependency>
-
-        <dependency>
-            <groupId>com.github.slimefun</groupId>
-            <artifactId>Slimefun</artifactId>
-            <version>${slimefun.legacy.version}</version>
-            <scope>provided</scope>
-        </dependency>
-
-        <dependency>
-            <groupId>org.bstats</groupId>
-            <artifactId>bstats-bukkit</artifactId>
-            <version>${bstats.version}</version>
-            <scope>compile</scope>
-        </dependency>
+        <dependency><groupId>${server.api.groupId}</groupId><artifactId>${server.api.artifactId}</artifactId><version>${server.api.version}</version><scope>provided</scope></dependency>
+        <dependency><groupId>com.github.slimefun</groupId><artifactId>Slimefun</artifactId><version>${slimefun.legacy.version}</version><scope>provided</scope></dependency>
+        <dependency><groupId>org.bstats</groupId><artifactId>bstats-bukkit</artifactId><version>${bstats.version}</version><scope>compile</scope></dependency>
     </dependencies>
 
     <profiles>
@@ -131,7 +58,7 @@
             <properties>
                 <server.api.groupId>dev.folia</server.api.groupId>
                 <server.api.artifactId>folia-api</server.api.artifactId>
-                <server.api.version>[26.2.build,)</server.api.version>
+                <server.api.version>26.2.build.+</server.api.version>
             </properties>
         </profile>
     </profiles>

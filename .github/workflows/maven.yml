@@ -17,7 +17,7 @@ concurrency:
 
 jobs:
   build:
-    name: Java 25 / Paper-Purpur-Folia 26.2 / Slimefun Legacy
+    name: Java 21 bytecode / Paper-Purpur 1.21.11-26.2 / Folia 26.2
     runs-on: ubuntu-latest
     steps:
       - name: Checkout LuckyBlocks
@@ -44,12 +44,27 @@ jobs:
           set -euo pipefail
           chmod +x ./gradlew
           ./gradlew publishToMavenLocal -PprojectVersion=Legacy-SNAPSHOT -x test --no-daemon
+      - name: Verify compatibility metadata
+        working-directory: luckyblocks
+        shell: bash
+        run: |
+          set -euo pipefail
+          grep -Fq '<version>1.0.2</version>' pom.xml
+          grep -Fq '<server.api.version>1.21.11-R0.1-SNAPSHOT</server.api.version>' pom.xml
+          grep -Fq '<maven.compiler.release>21</maven.compiler.release>' pom.xml
+          grep -Fq "api-version: '1.21.11'" src/main/resources/plugin.yml
+      - name: Verify Paper/Purpur 1.21.11 compilation
+        working-directory: luckyblocks
+        run: mvn -B -ntp clean package
+      - name: Verify Paper/Purpur 26.2 compilation
+        working-directory: luckyblocks
+        run: mvn -B -ntp clean package -Dserver.api.version=26.2.build.+
       - name: Verify Folia 26.2 compilation
         working-directory: luckyblocks
         run: mvn -B -ntp -Pfolia clean package
-      - name: Build Paper/Purpur 26.2 JAR
+      - name: Build universal release JAR from 1.21.11 baseline
         working-directory: luckyblocks
-        run: mvn -B -ntp clean package
+        run: mvn -B -ntp clean package -Dserver.api.version=1.21.11-R0.1-SNAPSHOT
       - name: Stage versioned JAR
         id: artifact
         working-directory: luckyblocks
@@ -62,6 +77,8 @@ jobs:
           test -s "$SOURCE"
           mkdir -p dist
           cp "$SOURCE" "dist/${JAR}"
+          unzip -p "dist/${JAR}" plugin.yml | grep -Fq "api-version: '1.21.11'"
+          javap -verbose -classpath "dist/${JAR}" io.github.thebusybiscuit.slimefunluckyblocks.SlimefunLuckyBlocks | grep -Fq 'major version: 65'
           sha256sum "dist/${JAR}"
           echo "version=${VERSION}" >> "$GITHUB_OUTPUT"
           echo "jar=${JAR}" >> "$GITHUB_OUTPUT"
@@ -82,4 +99,5 @@ jobs:
         run: |
           set -euo pipefail
           if [[ "$GITHUB_REF" == refs/tags/v* ]]; then TAG="$GITHUB_REF_NAME"; else TAG="v${VERSION}"; fi
-          if gh release view "$TAG" >/dev/null 2>&1; then gh release upload "$TAG" "dist/${JAR}" --clobber; else gh release create "$TAG" "dist/${JAR}" --target "$GITHUB_SHA" --generate-notes --title "SF_LuckyBlocks $TAG"; fi
+          NOTES="Compatibility release for Minecraft/Purpur 1.21.11 through Paper/Purpur 26.2, while retaining Folia 26.2 support. The released JAR emits Java 21 bytecode and is compile-verified on all supported targets."
+          if gh release view "$TAG" >/dev/null 2>&1; then gh release upload "$TAG" "dist/${JAR}" --clobber; else gh release create "$TAG" "dist/${JAR}" --target "$GITHUB_SHA" --notes "$NOTES" --title "SF_LuckyBlocks $TAG"; fi

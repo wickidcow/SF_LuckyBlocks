@@ -1,7 +1,7 @@
 name: SlimefunLuckyBlocks
 version: ${project.version}
 main: io.github.thebusybiscuit.slimefunluckyblocks.SlimefunLuckyBlocks
-api-version: '26.2'
+api-version: '1.21.11'
 folia-supported: true
 
 author: TheBusyBiscuit
@@ -9,7 +9,7 @@ contributors:
   - iiLuckyDev
   - wickidcow
 website: https://github.com/wickidcow/SF_LuckyBlocks
-description: Lucky Blocks for Slimefun Legacy on modern Paper, Purpur and Folia servers.
+description: Lucky Blocks for Slimefun Legacy on Minecraft 1.21.11 through 26.2 Paper/Purpur, with Folia 26.2 support.
 
 depend:
   - Slimefun
