@@ -6,9 +6,9 @@
 
     <groupId>com.github.wickidcow</groupId>
     <artifactId>SF_LuckyBlocks_Legacy</artifactId>
-    <version>1.0.2</version>
+    <version>1.0.3</version>
     <name>SF LuckyBlocks Legacy</name>
-    <description>Lucky Blocks for Slimefun Legacy on Minecraft 1.21.11 through 26.2 Paper/Purpur and Folia 26.2.</description>
+    <description>Lucky Blocks for Slimefun Legacy on Minecraft 1.21.11 through 26.3, with Folia 26.2 compatibility.</description>
 
     <properties>
         <maven.compiler.release>21</maven.compiler.release>
@@ -26,7 +26,7 @@
     </repositories>
 
     <build>
-        <finalName>SF_LuckyBlocks_Legacy_v${project.version}</finalName>
+        <finalName>SF_LuckyBlocks${project.version}</finalName>
         <defaultGoal>clean package</defaultGoal>
         <resources>
             <resource><directory>src/main/resources</directory><filtering>true</filtering></resource>
@@ -58,7 +58,7 @@
             <properties>
                 <server.api.groupId>dev.folia</server.api.groupId>
                 <server.api.artifactId>folia-api</server.api.artifactId>
-                <server.api.version>[26.2.build,)</server.api.version>
+                <server.api.version>[26.2.build,26.3)</server.api.version>
             </properties>
         </profile>
     </profiles>
