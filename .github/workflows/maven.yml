@@ -15,17 +15,21 @@ concurrency:
   group: luckyblocks-${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 
+env:
+  VERSION: "1.0.3"
+  OUTPUT_NAME: "SF_LuckyBlocks1.0.3.jar"
+
 jobs:
   build:
-    name: Java 21 bytecode / Paper-Purpur 1.21.11-26.2 / Folia 26.2
+    name: Universal LuckyBlocks compatibility
     runs-on: ubuntu-latest
     steps:
       - name: Checkout LuckyBlocks
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
         with:
           path: luckyblocks
       - name: Checkout Slimefun Legacy
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
         with:
           repository: wickidcow/Slimefun-Legacy
           ref: master
@@ -49,43 +53,43 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          grep -Fq '<version>1.0.2</version>' pom.xml
+          grep -Fq '<version>1.0.3</version>' pom.xml
           grep -Fq '<server.api.version>1.21.11-R0.1-SNAPSHOT</server.api.version>' pom.xml
           grep -Fq '<maven.compiler.release>21</maven.compiler.release>' pom.xml
+          grep -Fq '<finalName>SF_LuckyBlocks${project.version}</finalName>' pom.xml
           grep -Fq "api-version: '1.21.11'" src/main/resources/plugin.yml
       - name: Verify Paper/Purpur 1.21.11 compilation
         working-directory: luckyblocks
         run: mvn -B -ntp clean package
       - name: Verify Paper/Purpur 26.2 compilation
         working-directory: luckyblocks
-        run: mvn -B -ntp clean package '-Dserver.api.version=[26.2.build,)'
+        run: mvn -B -ntp clean package '-Dserver.api.version=[26.2.build,26.3)'
+      - name: Verify Paper 26.3 alpha compilation
+        working-directory: luckyblocks
+        run: mvn -B -ntp clean package -Dserver.api.version=26.3-rc-3.build.1-alpha
       - name: Verify Folia 26.2 compilation
         working-directory: luckyblocks
         run: mvn -B -ntp -Pfolia clean package
       - name: Build universal release JAR from 1.21.11 baseline
         working-directory: luckyblocks
         run: mvn -B -ntp clean package -Dserver.api.version=1.21.11-R0.1-SNAPSHOT
-      - name: Stage versioned JAR
-        id: artifact
+      - name: Stage and verify versioned JAR
         working-directory: luckyblocks
         shell: bash
         run: |
           set -euo pipefail
-          VERSION="$(mvn -q -DforceStdout help:evaluate -Dexpression=project.version)"
-          SOURCE="target/SF_LuckyBlocks_Legacy_v${VERSION}.jar"
-          JAR="SF_LuckyBlocks${VERSION}.jar"
+          SOURCE="target/${OUTPUT_NAME}"
           test -s "$SOURCE"
           mkdir -p dist
-          cp "$SOURCE" "dist/${JAR}"
-          unzip -p "dist/${JAR}" plugin.yml | grep -Fq "api-version: '1.21.11'"
-          javap -verbose -classpath "dist/${JAR}" io.github.thebusybiscuit.slimefunluckyblocks.SlimefunLuckyBlocks | grep -Fq 'major version: 65'
-          sha256sum "dist/${JAR}"
-          echo "version=${VERSION}" >> "$GITHUB_OUTPUT"
-          echo "jar=${JAR}" >> "$GITHUB_OUTPUT"
+          cp "$SOURCE" "dist/${OUTPUT_NAME}"
+          unzip -p "dist/${OUTPUT_NAME}" plugin.yml | grep -Fq "api-version: '1.21.11'"
+          javap -verbose -classpath "dist/${OUTPUT_NAME}" io.github.thebusybiscuit.slimefunluckyblocks.SlimefunLuckyBlocks | grep -Fq 'major version: 65'
+          sha256sum "dist/${OUTPUT_NAME}"
       - name: Upload raw JAR artifact
         uses: actions/upload-artifact@v7
         with:
-          path: luckyblocks/dist/${{ steps.artifact.outputs.jar }}
+          name: ${{ env.OUTPUT_NAME }}
+          path: luckyblocks/dist/${{ env.OUTPUT_NAME }}
           archive: false
           if-no-files-found: error
       - name: Publish raw JAR release asset
@@ -93,11 +97,10 @@ jobs:
         working-directory: luckyblocks
         env:
           GH_TOKEN: ${{ github.token }}
-          VERSION: ${{ steps.artifact.outputs.version }}
-          JAR: ${{ steps.artifact.outputs.jar }}
         shell: bash
         run: |
           set -euo pipefail
           if [[ "$GITHUB_REF" == refs/tags/v* ]]; then TAG="$GITHUB_REF_NAME"; else TAG="v${VERSION}"; fi
-          NOTES="Compatibility release for Minecraft/Purpur 1.21.11 through Paper/Purpur 26.2, while retaining Folia 26.2 support. The released JAR emits Java 21 bytecode and is compile-verified on all supported targets."
-          if gh release view "$TAG" >/dev/null 2>&1; then gh release upload "$TAG" "dist/${JAR}" --clobber; else gh release create "$TAG" "dist/${JAR}" --target "$GITHUB_SHA" --notes "$NOTES" --title "SF_LuckyBlocks $TAG"; fi
+          JAR="dist/${OUTPUT_NAME}"
+          NOTES="LuckyBlocks 1.0.3 adds Paper 26.3 alpha compatibility validation while preserving Paper/Purpur 1.21.11, the stable Paper/Purpur 26.2 production lane, Folia 26.2 support, and Java 21 universal bytecode. Maven now emits ${OUTPUT_NAME} directly."
+          if gh release view "$TAG" >/dev/null 2>&1; then gh release upload "$TAG" "$JAR" --clobber; else gh release create "$TAG" "$JAR" --target "$GITHUB_SHA" --notes "$NOTES" --title "SF_LuckyBlocks $TAG"; fi
