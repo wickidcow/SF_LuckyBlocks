@@ -42,7 +42,7 @@ public final class LuckyItemRestoreCommand implements CommandExecutor {
                     Enchantment.EFFICIENCY, 10, Enchantment.FORTUNE, 10,
                     Enchantment.UNBREAKING, 10)),
             Material.GOLDEN_AXE, new Signature("Lucky Axe", Map.of(
-                    Enchantment.EFFICIENCY, 10, Enchantment.FORTUNE, 10,
+                    Enchantment.SHARPNESS, 10, Enchantment.EFFICIENCY, 10, Enchantment.FORTUNE, 10,
                     Enchantment.UNBREAKING, 10)));
 
     private static boolean containsChinese(String name) {
