@@ -16,8 +16,8 @@ concurrency:
   cancel-in-progress: true
 
 env:
-  VERSION: "1.0.3"
-  OUTPUT_NAME: "SF_LuckyBlocks1.0.3.jar"
+  VERSION: "1.0.4"
+  OUTPUT_NAME: "SF_LuckyBlocks1.0.4.jar"
 
 jobs:
   build:
@@ -53,7 +53,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          grep -Fq '<version>1.0.3</version>' pom.xml
+          grep -Fq '<version>1.0.4</version>' pom.xml
           grep -Fq '<server.api.version>1.21.11-R0.1-SNAPSHOT</server.api.version>' pom.xml
           grep -Fq '<maven.compiler.release>21</maven.compiler.release>' pom.xml
           grep -Fq '<finalName>SF_LuckyBlocks${project.version}</finalName>' pom.xml
@@ -102,5 +102,5 @@ jobs:
           set -euo pipefail
           if [[ "$GITHUB_REF" == refs/tags/v* ]]; then TAG="$GITHUB_REF_NAME"; else TAG="v${VERSION}"; fi
           JAR="dist/${OUTPUT_NAME}"
-          NOTES="LuckyBlocks 1.0.3 adds Paper 26.3 alpha compatibility validation while preserving Paper/Purpur 1.21.11, the stable Paper/Purpur 26.2 production lane, Folia 26.2 support, and Java 21 universal bytecode. Maven now emits ${OUTPUT_NAME} directly."
+          NOTES="LuckyBlocks 1.0.4 restores English names for historical Chinese-named Lucky armor and weapons via the opt-in /luckyrestore command; preserves Paper/Purpur 1.21.11, the stable Paper/Purpur 26.2 production lane, Folia 26.2 support, and Java 21 universal bytecode. Maven now emits ${OUTPUT_NAME} directly."
           if gh release view "$TAG" >/dev/null 2>&1; then gh release upload "$TAG" "$JAR" --clobber; else gh release create "$TAG" "$JAR" --target "$GITHUB_SHA" --notes "$NOTES" --title "SF_LuckyBlocks $TAG"; fi

@@ -69,7 +69,7 @@ Successful `master` builds publish the server-ready JAR directly. No `.jar.zip` 
 Current naming format:
 
 ```text
-SF_LuckyBlocks_Legacy_v1.0.1.jar
+SF_LuckyBlocks1.0.4.jar
 ```
 
 Download the `.jar` from the repository's **Releases** page and place it directly into the server's `plugins/` folder.
