@@ -101,6 +101,7 @@ public class SlimefunLuckyBlocks extends JavaPlugin implements SlimefunAddon {
     @Override
     public void onEnable() {
         cfg = new Config(this);
+        java.util.Objects.requireNonNull(getCommand("luckyrestore")).setExecutor(new LuckyItemRestoreCommand());
 
         // Preserve the original LuckyBlocks bStats identity.
         new Metrics(this, 4858);

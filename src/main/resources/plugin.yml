@@ -13,3 +13,13 @@ description: Lucky Blocks for Slimefun Legacy on Minecraft 1.21.11 through 26.2 
 
 depend:
   - Slimefun
+
+commands:
+  luckyrestore:
+    description: Check or restore original LuckyBlocks equipment with legacy Chinese names
+    usage: /luckyrestore <check|hand>
+    permission: slimefunluckyblocks.restore
+permissions:
+  slimefunluckyblocks.restore:
+    description: Restore legacy LuckyBlocks equipment names
+    default: op
