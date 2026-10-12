@@ -19,7 +19,14 @@ commands:
     description: Check or restore original LuckyBlocks equipment with legacy Chinese names
     usage: /luckyrestore <check|hand>
     permission: slimefunluckyblocks.restore
+  luckygive:
+    description: Give real Slimefun Lucky Blocks or Pandora's Box to an online player
+    usage: /luckygive <player> <normal|lucky|unlucky|pandora> [amount]
+    permission: slimefunluckyblocks.give
 permissions:
   slimefunluckyblocks.restore:
     description: Restore legacy LuckyBlocks equipment names
+    default: op
+  slimefunluckyblocks.give:
+    description: Give registered Lucky Blocks to online players
     default: op
