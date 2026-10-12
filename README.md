@@ -69,10 +69,32 @@ Successful `master` builds publish the server-ready JAR directly. No `.jar.zip` 
 Current naming format:
 
 ```text
-SF_LuckyBlocks1.0.4.jar
+SF_LuckyBlocks1.0.5.jar
 ```
 
 Download the `.jar` from the repository's **Releases** page and place it directly into the server's `plugins/` folder.
+
+## 🛠️ OP / admin give command
+
+Give the actual registered Slimefun items (not decorative vanilla heads) from an OP account or the server console:
+
+```text
+/luckygive <player> <normal|lucky|unlucky|pandora> [amount]
+```
+
+```text
+/luckygive WickidCow normal 5
+/luckygive WickidCow lucky 3
+/luckygive WickidCow unlucky 1
+/luckygive WickidCow pandora 1
+```
+
+- `normal` -> `LUCKY_BLOCK`; `lucky` -> `LUCKY_BLOCK_LUCKY`; `unlucky` -> `LUCKY_BLOCK_UNLUCKY`; `pandora` -> `PANDORAS_BOX`.
+- Permission: `slimefunluckyblocks.give` (**OP by default**). Staff may be granted this node through LuckPerms.
+- Targets must be online. Amount defaults to 1 and is limited to 2,304 items per command.
+- Items are delivered on the target player's entity thread for Paper/Purpur/Folia compatibility. When inventory is full, excess items are **not** dropped; the command reports how many could fit.
+
+Console/rewards example: `luckygive %player_name% normal 1` (adapt the player placeholder for your rewards plugin).
 
 ## ⚙️ Configuration
 
