@@ -15,6 +15,7 @@ import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
 import org.bukkit.block.data.BlockData;
 import org.bukkit.block.data.Rotatable;
+import org.bukkit.command.PluginCommand;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -102,6 +103,10 @@ public class SlimefunLuckyBlocks extends JavaPlugin implements SlimefunAddon {
     public void onEnable() {
         cfg = new Config(this);
         java.util.Objects.requireNonNull(getCommand("luckyrestore")).setExecutor(new LuckyItemRestoreCommand());
+        PluginCommand giveCommand = java.util.Objects.requireNonNull(getCommand("luckygive"));
+        LuckyGiveCommand adminGive = new LuckyGiveCommand(this);
+        giveCommand.setExecutor(adminGive);
+        giveCommand.setTabCompleter(adminGive);
 
         // Preserve the original LuckyBlocks bStats identity.
         new Metrics(this, 4858);
